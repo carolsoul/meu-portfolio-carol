@@ -2,8 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import styles from './LoadingPage.module.css';
 
-// O prop onLoadingComplete será uma função chamada pelo App.jsx
-// para nos avisar quando a animação de loading terminar.
+// o prop onLoadingComplete será uma função chamada pelo App.
 const LoadingPage = ({ onLoadingComplete }) => {
   const [progress, setProgress] = useState(0);
 
@@ -16,7 +15,7 @@ const LoadingPage = ({ onLoadingComplete }) => {
         }
         return prev + 1;
       });
-    }, 30); // A velocidade do contador
+    }, 30);
 
     return () => clearInterval(interval);
   }, []);
@@ -27,7 +26,7 @@ const LoadingPage = ({ onLoadingComplete }) => {
       initial={{ opacity: 1 }}
       animate={{ opacity: progress === 100 ? 0 : 1 }}
       transition={{ duration: 1, delay: 0.5 }}
-      // onAnimationComplete é o gatilho para desmontar o componente
+      // onAnimationComplete é o trigger para desmontar o componente
       onAnimationComplete={() => {
         if (progress === 100) {
           onLoadingComplete();
