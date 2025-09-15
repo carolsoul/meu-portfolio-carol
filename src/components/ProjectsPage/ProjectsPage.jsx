@@ -163,7 +163,7 @@ function Projects() {
                 <p id='index'>{project.subtitle}</p>
               </div>
               
-              {/* A imagem agora é um link clicável para o GitHub */}
+              {/* A imagem é um link clicável para o GitHub */}
               <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="slide-img-link">
                 <div className="slide-img">
                   <img src={project.imageSrc} alt={`Thumbnail do projeto ${project.title}`} />
