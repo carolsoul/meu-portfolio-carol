@@ -275,27 +275,100 @@ img{
 
 /* Media Queries para responsividade */
 
-@media (max-width: 768px) {
-  .slide {
-    width: 220px;
-    height: 220px;
+@media (max-width: 1024px) {
+  .text-call-to-action p {
+    font-size: 2.5rem;
+    width: 90%;
+  }
+  .text-call-to-action small {
+    width: 60%;
   }
 
-  .slides-container {
-    gap: 20px;
-    perspective: 600px;
-    padding: 10px;
+  .btn-container {
+    padding: 5rem 0;
+  }
+  .footer{
+    height: 100%;
+  }
+
+  .footer footer{
+    position: relative;
+    top: 15rem;
+  }
+
+  .social{
+    position: relative;
+    top: 15rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .slide {
+    width: 300px;
+    height: 400px;
+  }
+
+  .text-call-to-action p {
+    font-size: 2rem;
+  }
+
+  .text-call-to-action small {
+    width: 80%;
+    font-size: 0.9rem;
+  }
+
+  .btn-container {
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+
+  .send-email, .see-github {
+    font-size: 1.2rem;
+    padding: 0.8rem 1.4rem;
+    width: 100%;
   }
 }
 
 @media (max-width: 480px) {
   .slide {
-    width: 180px;
-    height: 180px;
+    width: 250px;
+    height: 350px;
   }
 
-  .slider {
-    gap: 15px;
-    padding: 20px;
+  .text-call-to-action p {
+    font-size: 1.5rem;
+  }
+  
+  .text-call-to-action small {
+    width: 95%;
+  }
+
+  .btn-container {
+    gap: 1.5rem;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  
+  }
+
+  .send-email, .see-github {
+    font-size: 0.7rem;
+    padding: 0.8rem 1.2rem;
+    width: 100%;
+  }
+  .footer{
+    height: 100%;
+  }
+
+  .social{
+    position: relative;
+    top: 9rem;
+  }
+
+  .footer footer{
+    position: relative;
+    top: 8rem;
   }
 }
