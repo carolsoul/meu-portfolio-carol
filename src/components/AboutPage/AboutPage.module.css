@@ -215,3 +215,209 @@ p {
   position: relative;
   top: 2rem;
 }
+
+/* Media Queries para Responsividade */
+
+@media (max-width: 1024px) {
+  .container2Block, .projectsSection h2 {
+    width: 90%;
+    font-size: 3rem;
+  }
+
+  .container2Block span {
+    font-size: 3rem;
+  }
+
+  .aboutMeP {
+    width: 80%;
+  }
+
+  .eyesContainer{
+    top: 51%;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .content{
+    height: 0dvh;
+  }
+  .container2Block {
+    width: 60%;
+  }
+
+  .container2Block span {
+    font-size: 3rem;
+  }
+
+  .projectsSection h2 {
+    font-size: 2.5rem;
+  }
+
+  .itemTxt, .itemSlash {
+    font-size: 1.8rem;
+  }
+
+  .aboutMeP {
+    width: 70%;
+    font-size: 1.05rem;
+  }
+
+  .ctaButton {
+    font-size: 1.3rem;
+    padding: 0.7rem 3rem;
+  }
+
+  .carolEyesImg {
+    width: 25rem;
+  }
+
+  .eyesContainer{
+    top: 89%;
+    gap: 1.5rem;
+  }
+
+  .eye1, .eye2 {
+    width: 3.5rem;
+    height: 5rem;
+  }
+  .pupil {
+    width: 2.5rem;
+    height: 3.5rem;
+    transform: translate(25%, 40%);
+  }
+  .bright {
+    width: 0.7rem;
+    height: 0.9rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .contentRow {
+    flex-direction: column;
+    padding: 3rem 0;
+  }
+
+  .container2Block span {
+    font-size: 2.5rem;
+    text-align: center;
+  }
+
+  .projectsSection h2 {
+    font-size: 2rem;
+  }
+
+  .aboutMeP {
+    width: 90%;
+    font-size: 1rem;
+  }
+
+  .ctaButton {
+    font-size: 1.2rem;
+    padding: 0.7rem 2.5rem;
+  }
+
+  .carolEyesImg {
+    width: 20rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .container2Block {
+    width: 100%;
+    padding: 0rem 5rem;
+  }
+
+  .container2Block span {
+    font-size: 2rem;
+  }
+
+  .aboutMeP {
+    width: 95%;
+    font-size: 0.95rem;
+  }
+
+  .projectsSection h2 {
+    font-size: 1.8rem;
+  }
+
+  .itemTxt, .itemSlash {
+    font-size: 1.6rem;
+  }
+
+  .ctaButton {
+    font-size: 1.1rem;
+    padding: 0.7rem 2rem;
+  }
+
+  .carolEyesImg {
+    width: 18rem;
+  }
+
+  .eyesContainer{
+    top: 131%;
+    width: 100%;
+    min-height: 3%;
+    gap: 1rem;
+  }
+
+  .eye1, .eye2 {
+    width: 2.8rem;
+    height: 4rem;
+  }
+
+  .pupil {
+    width: 2rem;
+    height: 2.8rem;
+    transform: translate(25%, 40%);
+  }
+}
+
+@media (max-width: 480px) {
+  .aboutContainer{
+    height: 150dvh;
+  }
+
+  .content {
+    height: 150dvh;
+  }
+
+  .container2Block span {
+    font-size: 1.4rem;
+  }
+
+  .projectsSection h2 {
+    font-size: 1.5rem;
+  }
+
+  .itemTxt, .itemSlash {
+    font-size: 1.5rem;
+  }
+
+  .ctaButton {
+    font-size: 1rem;
+    padding: 0.6rem 2rem;
+  }
+
+  .carolEyesImg {
+    top: 20rem;
+  }
+
+  .eyesContainer{
+    height: auto;
+    position: relative;
+    top: 30rem;
+    gap: 1.5rem;
+  }
+
+  .eye1, .eye2 {
+    width: 3rem;
+    height: 4rem;
+  }
+
+  .pupil {
+    width: 2rem;
+    height: 3rem;
+    transform: translate(0%, 35%);
+  }
+}
