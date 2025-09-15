@@ -1,0 +1,34 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Unbounded", sans-serif;
+  color: #FFFDD0;
+  background-color: #000;
+  overflow-x: hidden; /* Previne scroll horizontal */
+}
+
+p{
+  font-family: "Anonymous Pro", monospace;
+}
+
+/* Estiliza a barra de rolagem (opcional, mas melhora a estética) */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #111;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

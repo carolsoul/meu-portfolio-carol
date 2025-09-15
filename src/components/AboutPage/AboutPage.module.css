@@ -1,0 +1,217 @@
+.aboutContainer {
+  min-height: 210dvh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000;
+}
+
+.content {
+  width: 100%;
+  height: 150dvh;
+  text-align: center;
+  color: #FFFDD0;
+}
+
+.projectsSection{
+  margin-bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+}
+
+p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #FFFDD0;
+
+}
+
+.contentRow{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding: 5rem 0;
+}
+
+.mePic{
+  height: 280px;
+  width: 220px;
+  border-radius: 5%;
+  border: 3px solid #FFFDD0;
+  background-image: url('./me-pic.png');
+  background-size: cover;
+  background-position: center;
+}
+
+.carolImg{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 5%;
+}
+
+.container2Block{
+  font-size: 4rem;
+  text-transform: uppercase;
+  font-weight: 900;
+  width: 780px;
+  line-height: 85%;
+}
+
+.container2Block span{
+  font-size: 4rem;
+  font-weight: 900;
+  font-family: 'Unbounded', cursive;
+}
+
+.aboutMeP{
+  padding: 3rem 0 ;
+  margin: 0 auto;
+  width: 55%;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 400;
+  font-family: "Anonymous Pro", monospace;
+}
+
+.loopContainer{
+    background-color: #A877FD;
+    display: flex;
+    white-space: nowrap;
+    width: auto;
+    margin: 4rem 0;
+}
+
+.list{
+    display: flex;
+    align-items: top;
+    -webkit-animation: loop 30s infinite linear;
+    animation: loop 30s infinite linear;
+    font-size: 2rem !important;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 900;
+}
+
+.itemTxt{
+    font-weight: 900;
+    font-size: 2rem;
+    color: #FFFDD0;
+}
+
+.itemD{
+  display: inline;
+}
+
+.itemSlash{
+    font-family: 'Unbounded', sans-serif;
+    margin: 0 50px;
+    display: inline-block;
+    color: #FFFDD0;
+    font-size: 2rem;
+    font-weight: 900;
+}
+
+@keyframes loop {
+    100% {
+        -webkit-transform: translateX(-100%);
+        transform: translateX(-100%);
+    }
+}
+@-webkit-keyframes loop {
+    100% {
+        -webkit-transform: translateX(-100%);
+        transform: translateX(-100%);
+    }
+}
+
+.projectsSection h2{
+  text-transform: uppercase;
+  font-size: 2.5rem;
+  font-weight: 900;
+  width: 780px;
+}
+
+.ctaButton {
+  border: 3px solid #A877FD ;
+  background-color: transparent;
+  border-radius: 50px;
+  padding: 0.8rem 3.5rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #A877FD;
+  cursor: pointer;
+  margin-top: 2rem;
+  text-transform: uppercase;
+}
+
+.ctaButton:hover {
+  background-color: #A877FD;
+  color: #000;
+  transition: all 0.3s ease-in-out;
+  transform: scale(1.05);
+}
+
+.eyesContainer{
+  position: absolute;
+  width: 100%;
+  min-height: 15%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  top: 102%;
+  left: 1%;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.eye1{
+  width: 5rem;
+  height: 7rem;
+  border-radius: 50%;
+  background-color: #fff;
+}
+
+.eye2{
+  width: 5rem;
+  height: 7rem;
+  border-radius: 50%;
+  background-color: #fff;
+}
+
+.pupil{
+  position: absolute;
+  width: 2rem;
+  height: 3rem;
+  border-radius: 50%;
+  background-color: #000;
+  padding: 1rem;
+  transform: translate(50%, 50%);
+  transition: all 0.2s ease-in-out;
+}
+
+.bright{
+  position: absolute;
+  width: 0.4rem;
+  height: 0.8rem;
+  border-radius: 50%;
+  background-color: white;
+  transform: translate(-90%, -50%);
+}
+
+.carolEyesImg{
+  width: 30rem;
+  position: relative;
+  top: 2rem;
+}
