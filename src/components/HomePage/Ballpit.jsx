@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react'; // 1. Adicione o 'useState'
 import {
   Clock as e,
   PerspectiveCamera as t,
@@ -234,7 +234,9 @@ class x {
 const b = new Map(),
   A = new r();
 let R = false;
+// 2. A função S agora aceita um parâmetro 'interactive'
 function S(e) {
+  const interactive = e.interactive !== false; // É interativo por padrão
   const t = {
     position: new r(),
     nPosition: new r(),
@@ -254,10 +256,13 @@ function S(e) {
         document.body.addEventListener('pointerleave', L);
         document.body.addEventListener('click', C);
 
-        document.body.addEventListener('touchstart', TouchStart, { passive: false });
-        document.body.addEventListener('touchmove', TouchMove, { passive: false });
-        document.body.addEventListener('touchend', TouchEnd, { passive: false });
-        document.body.addEventListener('touchcancel', TouchEnd, { passive: false });
+        // 3. Adiciona os listeners de toque APENAS se for interativo
+        if (interactive) {
+            document.body.addEventListener('touchstart', TouchStart, { passive: false });
+            document.body.addEventListener('touchmove', TouchMove, { passive: false });
+            document.body.addEventListener('touchend', TouchEnd, { passive: false });
+            document.body.addEventListener('touchcancel', TouchEnd, { passive: false });
+        }
 
         R = true;
       }
@@ -270,11 +275,14 @@ function S(e) {
       document.body.removeEventListener('pointermove', M);
       document.body.removeEventListener('pointerleave', L);
       document.body.removeEventListener('click', C);
-
-      document.body.removeEventListener('touchstart', TouchStart);
-      document.body.removeEventListener('touchmove', TouchMove);
-      document.body.removeEventListener('touchend', TouchEnd);
-      document.body.removeEventListener('touchcancel', TouchEnd);
+      
+      // 4. Remove os listeners de toque APENAS se eles foram adicionados
+      if (interactive) {
+          document.body.removeEventListener('touchstart', TouchStart);
+          document.body.removeEventListener('touchmove', TouchMove);
+          document.body.removeEventListener('touchend', TouchEnd);
+          document.body.removeEventListener('touchcancel', TouchEnd);
+      }
 
       R = false;
     }
@@ -673,8 +681,10 @@ function createBallpit(e, t = {}) {
   e.style.userSelect = 'none';
   e.style.webkitUserSelect = 'none';
 
+  // 5. Passa a propriedade 'interactive' para a função S
   const h = S({
     domElement: e,
+    interactive: t.interactive, 
     onMove() {
       n.setFromCamera(h.nPosition, i.camera);
       i.camera.getWorldDirection(o.normal);
@@ -719,23 +729,47 @@ function createBallpit(e, t = {}) {
   };
 }
 
+// 6. Lógica principal no componente React
 const Ballpit = ({ className = '', followCursor = true, ...props }) => {
   const canvasRef = useRef(null);
   const spheresInstanceRef = useRef(null);
+  // Estado para verificar se a tela é de mobile
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // Função para checar o tamanho da tela
+    const checkIsMobile = () => {
+        setIsMobile(window.innerWidth < 768);
+    }
+    
+    // Roda a função uma vez no início
+    checkIsMobile();
+    // Adiciona o listener para o evento de redimensionar a tela
+    window.addEventListener('resize', checkIsMobile);
+    // Remove o listener quando o componente for desmontado
+    return () => window.removeEventListener('resize', checkIsMobile);
+  }, []) // Array vazio significa que este useEffect roda apenas na montagem e desmontagem
+
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    spheresInstanceRef.current = createBallpit(canvas, { followCursor, ...props });
+    // Cria a animação, passando a propriedade 'interactive'
+    // A interatividade será desativada (false) se isMobile for true
+    spheresInstanceRef.current = createBallpit(canvas, {
+        followCursor,
+        ...props,
+        interactive: !isMobile
+    });
 
     return () => {
       if (spheresInstanceRef.current) {
         spheresInstanceRef.current.dispose();
       }
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    // Este useEffect será re-executado se o estado de isMobile mudar
+  }, [isMobile, followCursor, props]);
 
   return <canvas className={className} ref={canvasRef} style={{ width: '100%', height: '100%' }} />;
 };
