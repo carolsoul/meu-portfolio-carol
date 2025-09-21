@@ -416,8 +416,8 @@ p {
   }
 
   .pupil {
-    width: 2rem;
-    height: 3rem;
+    width: 1rem;
+    height: 2.5rem;
     transform: translate(0%, 35%);
   }
 }
