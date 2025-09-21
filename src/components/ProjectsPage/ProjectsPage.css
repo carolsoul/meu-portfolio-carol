@@ -364,11 +364,11 @@ img{
 
   .social{
     position: relative;
-    top: 9rem;
+    top: 0rem;
   }
 
   .footer footer{
     position: relative;
-    top: 8rem;
+    top: 0rem;
   }
 }
