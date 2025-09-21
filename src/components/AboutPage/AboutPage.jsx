@@ -86,7 +86,7 @@ const AboutPage = () => {
 
             <div className={styles.container2Block}>
                 <BlurText
-                text="Dev Front-end brasileira & entusiasta de UI"
+                text="Dev Front-end paulista & entusiasta de UI"
                 delay={200}
                 animateBy="words"
                 direction="top"
