@@ -10,5 +10,5 @@ export const channels = [
     href: 'https://www.linkedin.com/in/anna-caroline-gon%C3%A7alves-9624262b0/',
   },
   { label: 'GitHub', href: 'https://github.com/carolsoul' },
-  { label: 'Currículo (PDF)', href: './CURRICULO_ANNA.pdf' },
+  { label: 'Currículo (PDF)', href: './CV_Anna_Caroline.pdf' },
 ];

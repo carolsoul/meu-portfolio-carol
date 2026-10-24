@@ -48,8 +48,8 @@ const Hero = () => {
           className={styles.dots}
           dotSize={4}
           gap={22}
-          baseColor="#3a3935"
-          activeColor="#efece6"
+          baseColor="#cfcac1"
+          activeColor="#111110"
           proximity={150}
           shockRadius={260}
           shockStrength={4}
@@ -61,8 +61,8 @@ const Hero = () => {
         <div className={styles.copy}>
           <SplitText
             tag="h1"
-            text="Desenvolvedora front-end em São Paulo."
-            className={`${styles.line} display`}
+            text="Desenvolvedora full-stack."
+            className={`${styles.title} display`}
             splitType="chars"
             mask
             trigger="load"
@@ -76,7 +76,7 @@ const Hero = () => {
           />
           <SplitText
             tag="h2"
-            text="Interfaces claras e bem construídas."
+            text="Com foco em produtos web completos, da interface à API."
             className={`${styles.line} ${styles.muted} display`}
             splitType="chars"
             mask
@@ -86,7 +86,7 @@ const Hero = () => {
             ease="expo.out"
             duration={1.2}
             delay={18}
-            accentColor="#efece6"
+            accentColor="#111110"
             textAlign="left"
           />
         </div>

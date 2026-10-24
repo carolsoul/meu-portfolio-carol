@@ -2,13 +2,15 @@
   position: relative;
   height: 100svh;
   z-index: 1;
+  /* aparece em volta do cartão quando o hero encolhe e esconde o rodapé preso no fundo */
+  background-color: #dedad2;
 }
 
 .frame {
   position: absolute;
   inset: 0;
-  background-color: var(--ink);
-  color: var(--paper);
+  background-color: var(--paper);
+  color: var(--ink);
   overflow: hidden;
 }
 
@@ -25,7 +27,7 @@
   font-size: 12px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(239, 236, 230, 0.55);
+  color: var(--ink-soft);
   pointer-events: none;
 }
 
@@ -35,24 +37,36 @@
   right: var(--page);
   bottom: clamp(28px, 6vh, 64px);
   display: grid;
-  gap: 0.5em;
-  font-size: clamp(30px, 4.6vw, 76px);
+  gap: 0.7em;
+  font-size: clamp(22px, 2.6vw, 42px);
   pointer-events: none;
+}
+
+/* "DESENVOLVEDORA FULL-STACK." mede 15.27em e ocupa a largura útil (com folga de renderização) */
+.title {
+  display: block !important;
+  font-size: calc((100vw - 2 * var(--page)) / 16.2);
+}
+
+/* em telas estreitas quebra em duas linhas; "DESENVOLVEDORA" mede 9.12em */
+@media (max-width: 900px) {
+  .title {
+    font-size: calc((100vw - 2 * var(--page)) / 9.35);
+  }
 }
 
 .line {
   display: block !important;
   font-size: inherit;
-  /* largo o bastante para "DESENVOLVEDORA FRONT-END" ficar na mesma linha */
-  max-width: 16em;
+  max-width: 22em;
 }
 
 .muted {
-  color: #8c877e;
+  color: var(--ink-soft);
 }
 
 @media (max-width: 600px) {
   .copy {
-    font-size: clamp(28px, 9vw, 40px);
+    font-size: clamp(20px, 6vw, 28px);
   }
 }

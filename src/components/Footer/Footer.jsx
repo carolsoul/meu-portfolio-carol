@@ -45,7 +45,6 @@ const Footer = () => {
 
       <div className={styles.bottom}>
         <p>© {new Date().getFullYear()} Carol Sousa</p>
-        <p>Feito com React e GSAP</p>
       </div>
     </footer>
   );

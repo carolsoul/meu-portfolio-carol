@@ -31,9 +31,6 @@ const Contact = () => {
             <a href={`mailto:${email}`} className="pill">
               Me mande um e-mail
             </a>
-            <a href={`mailto:${email}`} className={`${styles.mail} link-line`}>
-              {email}
-            </a>
           </div>
         </AnimatedContent>
       </div>
