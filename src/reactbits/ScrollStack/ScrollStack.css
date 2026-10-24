@@ -1,0 +1,41 @@
+/*
+  Baseado em React Bits (https://reactbits.dev) - MIT + Commons Clause.
+  Copyright (c) 2026 David Haz.
+*/
+
+.scroll-stack {
+  position: relative;
+  width: 100%;
+}
+
+.scroll-stack--contained {
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.scroll-stack__inner {
+  position: relative;
+}
+
+.scroll-stack__slot {
+  position: sticky;
+}
+
+.scroll-stack-card {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  overflow: hidden;
+  transform-origin: 50% 0;
+  will-change: transform;
+}
+
+.scroll-stack-card__shade {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: #000;
+  opacity: var(--scroll-stack-dim, 0);
+  pointer-events: none;
+}

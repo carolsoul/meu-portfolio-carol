@@ -1,34 +1,158 @@
-* {
+:root {
+  --paper: #efece6;
+  --ink: #111110;
+  --ink-soft: #6a665f;
+  --line: rgba(17, 17, 16, 0.14);
+  --dark-line: rgba(239, 236, 230, 0.16);
+
+  --sans: 'Outfit Variable', 'Helvetica Neue', Arial, sans-serif;
+
+  /* margem lateral da página e espaço entre colunas do grid de 12 */
+  --page: clamp(16px, 3vw, 48px);
+  --gutter: clamp(12px, 1.6vw, 28px);
+  --header-h: 72px;
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
 body {
-  font-family: "Unbounded", sans-serif;
-  color: #FFFDD0;
-  background-color: #000;
-  overflow-x: hidden; /* Previne scroll horizontal */
+  font-family: var(--sans);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--ink);
+  background-color: var(--paper);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-p{
-  font-family: "Anonymous Pro", monospace;
+img {
+  display: block;
+  max-width: 100%;
 }
 
-/* Estiliza a barra de rolagem (opcional, mas melhora a estética) */
-::-webkit-scrollbar {
-  width: 5px;
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
-::-webkit-scrollbar-track {
-  background: #111;
+ul {
+  list-style: none;
 }
 
-::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 5px;
+::selection {
+  background: var(--ink);
+  color: var(--paper);
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
+:focus-visible {
+  outline: 1px solid currentColor;
+  outline-offset: 4px;
+}
+
+section[id] {
+  scroll-margin-top: var(--header-h);
+}
+
+/* títulos pesados em caixa alta */
+.display {
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.035em;
+  line-height: 0.92;
+}
+
+/* títulos leves das seções */
+.heading-light {
+  font-size: clamp(32px, 3.4vw, 54px);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+/* botão preto em pílula */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 0 30px;
+  border-radius: 999px;
+  background-color: var(--ink);
+  color: var(--paper);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: transform 0.5s var(--ease-out), background-color 0.3s ease;
+}
+
+.pill:hover {
+  transform: scale(1.04);
+  background-color: #2a2927;
+}
+
+/* as máscaras do SplitText (GSAP) crescem no topo e nas laterais para não cortar
+   terminais que invadem a letra vizinha; a base continua escondendo o texto na entrada */
+.split-char-mask,
+.split-word-mask {
+  padding: 0.2em 0.2em 0;
+  margin: -0.2em -0.2em 0;
+}
+
+/* sublinhado que entra da esquerda no hover */
+.link-line {
+  position: relative;
+  display: inline-block;
+}
+
+.link-line::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background-color: currentColor;
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 0.6s var(--ease-out);
+}
+
+.link-line:hover::after,
+.link-line:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }

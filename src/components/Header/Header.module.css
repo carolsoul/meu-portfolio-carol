@@ -1,0 +1,44 @@
+/* fixo no topo; o difference deixa o texto claro sobre o preto e escuro sobre o papel */
+.header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 50;
+  height: var(--header-h);
+  padding: 22px var(--page) 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  color: #fff;
+  mix-blend-mode: difference;
+  pointer-events: none;
+}
+
+.header a {
+  pointer-events: auto;
+}
+
+.brand {
+  display: inline-block;
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transform-origin: 0 0;
+}
+
+.nav {
+  display: flex;
+  gap: clamp(18px, 2.4vw, 40px);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 600px) {
+  .nav {
+    display: none;
+  }
+}

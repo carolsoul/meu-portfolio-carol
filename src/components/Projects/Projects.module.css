@@ -1,0 +1,138 @@
+.projects {
+  position: relative;
+  z-index: 2;
+  padding: clamp(80px, 12vh, 140px) var(--page) clamp(100px, 16vh, 180px);
+  background-color: var(--paper);
+}
+
+.title {
+  display: block !important;
+  /* "SELECIONADOS" mede 7.43em e precisa caber na largura útil */
+  font-size: min(10vw, 168px, calc((100vw - 2 * var(--page)) / 7.7));
+  max-width: 7.8em;
+  margin-bottom: clamp(40px, 7vw, 100px);
+}
+
+/* a largura acompanha a altura da tela para o cartão 16:10 inteiro caber quando empilha */
+.stack {
+  max-width: min(1280px, calc((100svh - 190px) * 1.6));
+  margin: 0 auto;
+}
+
+/* cartão no formato de uma tela de desktop */
+.card {
+  aspect-ratio: 16 / 10;
+  border-radius: 10px;
+  background-color: var(--ink);
+  color: var(--paper);
+}
+
+.link {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+.link:focus-visible {
+  outline-offset: -4px;
+}
+
+.screen {
+  position: absolute;
+  inset: 0;
+}
+
+.screen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition:
+    transform 1.2s var(--ease-out),
+    filter 0.8s var(--ease-out);
+}
+
+/* em telas com mouse as imagens ficam em tons de cinza até o hover */
+@media (hover: hover) and (pointer: fine) {
+  .screen img {
+    filter: grayscale(1) contrast(1.04);
+  }
+
+  .card:hover .screen img {
+    filter: none;
+    transform: scale(1.03);
+  }
+}
+
+.tag {
+  position: absolute;
+  top: clamp(14px, 2vw, 26px);
+  left: clamp(14px, 2vw, 26px);
+  padding: 9px 16px;
+  border-radius: 999px;
+  background-color: rgba(17, 17, 16, 0.86);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.caption {
+  position: absolute;
+  left: clamp(14px, 2vw, 26px);
+  bottom: clamp(14px, 2vw, 26px);
+  width: min(440px, calc(100% - 28px));
+  padding: 20px 22px 22px;
+  border-radius: 6px;
+  background-color: rgba(17, 17, 16, 0.9);
+}
+
+.cardTitle {
+  font-size: clamp(20px, 1.8vw, 26px);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+}
+
+.description {
+  margin-top: 8px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(239, 236, 230, 0.72);
+}
+
+.all {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(24px, 4vw, 56px);
+}
+
+/* no celular a legenda sai de cima da imagem e fica embaixo dela, dentro do cartão */
+@media (max-width: 700px) {
+  .card {
+    aspect-ratio: auto;
+  }
+
+  .link {
+    position: relative;
+  }
+
+  .screen {
+    position: relative;
+    aspect-ratio: 16 / 10;
+  }
+
+  .tag {
+    top: 12px;
+    left: 12px;
+    font-size: 12px;
+    padding: 8px 13px;
+  }
+
+  .caption {
+    position: static;
+    width: auto;
+    padding: 18px 16px 20px;
+    border-radius: 0;
+    background-color: transparent;
+  }
+}

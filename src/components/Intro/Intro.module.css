@@ -1,0 +1,15 @@
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  pointer-events: none;
+}
+
+.column {
+  flex: 1;
+  /* sobrepõe 1px para não aparecer fresta entre as colunas */
+  margin-right: -1px;
+  background-color: var(--ink);
+  transform-origin: 50% 100%;
+}

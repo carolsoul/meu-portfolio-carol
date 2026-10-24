@@ -1,0 +1,49 @@
+.contact {
+  position: relative;
+  z-index: 2;
+  padding: clamp(60px, 10vh, 120px) var(--page) clamp(120px, 20vh, 220px);
+  background-color: var(--paper);
+}
+
+.statement {
+  /* "CONSTRUIR" mede 5.45em e precisa caber na largura útil */
+  font-size: min(12vw, 200px, calc((100vw - 2 * var(--page)) / 5.7));
+  max-width: 7.2em;
+}
+
+.details {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+  margin-top: clamp(64px, 10vw, 140px);
+}
+
+.heading {
+  grid-column: 1 / 5;
+}
+
+.body {
+  grid-column: 5 / 11;
+  font-size: clamp(17px, 1.3vw, 20px);
+  color: var(--ink-soft);
+  max-width: 36em;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 28px;
+  margin-top: 32px;
+}
+
+@media (max-width: 900px) {
+  .heading,
+  .body {
+    grid-column: 1 / 13;
+  }
+
+  .heading {
+    margin-bottom: 20px;
+  }
+}
