@@ -1,44 +1,69 @@
 .footer {
+  position: sticky;
+  bottom: 0;
+  z-index: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: min(100svh, 680px);
+  padding: clamp(56px, 8vw, 96px) var(--page) 22px;
+  background-color: var(--ink);
+  color: var(--paper);
+}
+
+.columns {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   column-gap: var(--gutter);
-  margin: 0 var(--page);
-  padding: 18px 0 22px;
-  border-top: 1px solid var(--line);
-  color: var(--ink-soft);
+  row-gap: 40px;
 }
 
-.footer > :nth-child(1) {
-  grid-column: 1 / 4;
+.column {
+  grid-column: span 3;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  font-size: clamp(18px, 1.6vw, 24px);
+  font-weight: 300;
 }
 
-.made {
-  grid-column: 4 / 10;
+.title {
+  margin-bottom: 14px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(239, 236, 230, 0.55);
 }
 
-.top {
-  grid-column: 10 / 13;
-  justify-self: end;
-  color: var(--ink);
+/* o nome ocupa a largura do rodapé: "CAROL SOUSA" mede 6.68em */
+.nameWrap {
+  container-type: inline-size;
+  margin-top: auto;
+  padding-top: 48px;
 }
 
-@media (max-width: 600px) {
-  .footer {
-    grid-template-columns: 1fr auto;
-    row-gap: 6px;
-  }
+.name {
+  font-size: 14.5vw;
+  font-size: calc(100cqw / 6.78);
+  line-height: 0.82;
+  white-space: nowrap;
+  margin-left: -0.03em;
+}
 
-  .footer > :nth-child(1) {
-    grid-column: 1;
-  }
+.bottom {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 22px;
+  padding-top: 16px;
+  border-top: 1px solid var(--dark-line);
+  font-size: 13px;
+  color: rgba(239, 236, 230, 0.55);
+}
 
-  .made {
-    grid-column: 1 / -1;
-    grid-row: 2;
-  }
-
-  .top {
-    grid-column: 2;
-    grid-row: 1;
+@media (max-width: 700px) {
+  .column {
+    grid-column: span 6;
   }
 }

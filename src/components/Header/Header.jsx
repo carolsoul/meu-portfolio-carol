@@ -1,14 +1,10 @@
-import { useEffect, useState } from 'react';
-import AnimatedContent from '../../reactbits/AnimatedContent/AnimatedContent';
+import { useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
 import styles from './Header.module.css';
 
-const timeFormat = new Intl.DateTimeFormat('pt-BR', {
-  timeZone: 'America/Sao_Paulo',
-  hour: '2-digit',
-  minute: '2-digit',
-});
-
-const currentTime = () => timeFormat.format(new Date());
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const links = [
   { href: '#sobre', label: 'Sobre' },
@@ -16,39 +12,64 @@ const links = [
   { href: '#contato', label: 'Contato' },
 ];
 
-const Header = () => {
-  const [time, setTime] = useState(currentTime);
+// largura que o nome ocupa no topo da página, antes de encolher
+const bigScale = brand => {
+  const share = window.innerWidth < 600 ? 0.74 : 0.42;
+  return Math.max(1, (window.innerWidth * share) / brand.offsetWidth);
+};
 
-  useEffect(() => {
-    const interval = setInterval(() => setTime(currentTime()), 10000);
-    return () => clearInterval(interval);
-  }, []);
+const Header = () => {
+  const ref = useRef(null);
+  const brandRef = useRef(null);
+
+  useGSAP(
+    () => {
+      const brand = brandRef.current;
+      const mm = gsap.matchMedia();
+
+      mm.add('(prefers-reduced-motion: no-preference)', () => {
+        // o nome começa grande sobre o hero e encolhe até o tamanho do header
+        gsap.fromTo(
+          brand,
+          { scale: () => bigScale(brand) },
+          {
+            scale: 1,
+            ease: 'none',
+            scrollTrigger: {
+              start: 0,
+              end: () => window.innerHeight * 0.55,
+              scrub: true,
+              invalidateOnRefresh: true,
+            },
+          }
+        );
+      });
+
+      gsap.from(`.${styles.nav} a`, {
+        yPercent: -120,
+        opacity: 0,
+        duration: 1,
+        delay: 1.2,
+        ease: 'expo.out',
+        stagger: 0.06,
+      });
+    },
+    { scope: ref }
+  );
 
   return (
-    <header className={styles.header}>
-      <AnimatedContent
-        trigger="mount"
-        className={`${styles.bar} label`}
-        distance={14}
-        reverse
-        duration={1}
-        delay={0.9}
-        stagger={0.08}
-      >
-        <a href="#topo" className={`${styles.brand} link-line`}>Carol Sousa</a>
+    <header ref={ref} className={styles.header}>
+      <a ref={brandRef} href="#topo" className={styles.brand}>
+        Carol Sousa
+      </a>
 
-        <p className={styles.clock}>
-          São Paulo <time>{time}</time>
-        </p>
-
-        <nav aria-label="Principal" className={styles.nav}>
-          {links.map(link => (
-            <a key={link.href} href={link.href} className="link-line">
-              {link.label}
-            </a>
-          ))}
-        </nav>
-      </AnimatedContent>
+      <nav aria-label="Principal" className={styles.nav}>
+        {links.map(link => (
+          <a key={link.href} href={link.href} className="link-line">
+            {link.label}
+          </a>
+        ))}
+      </nav>
     </header>
   );
 };

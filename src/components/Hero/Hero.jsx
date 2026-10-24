@@ -1,58 +1,95 @@
+import { useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+import DotGrid from '../../reactbits/DotGrid/DotGrid';
 import SplitText from '../../reactbits/SplitText/SplitText';
-import ScrollReveal from '../../reactbits/ScrollReveal/ScrollReveal';
-import AnimatedContent from '../../reactbits/AnimatedContent/AnimatedContent';
 import styles from './Hero.module.css';
 
+gsap.registerPlugin(ScrollTrigger, useGSAP);
+
 const Hero = () => {
+  const ref = useRef(null);
+  const frameRef = useRef(null);
+
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia();
+
+      mm.add('(prefers-reduced-motion: no-preference)', () => {
+        // o hero fica preso enquanto a seção seguinte sobe por cima, e encolhe até virar um cartão
+        gsap
+          .timeline({
+            scrollTrigger: {
+              trigger: ref.current,
+              start: 'top top',
+              end: 'bottom top',
+              scrub: true,
+              pin: true,
+              pinSpacing: false,
+            },
+          })
+          .fromTo(
+            frameRef.current,
+            { clipPath: 'inset(0% 0% 0% 0% round 0px)' },
+            { clipPath: 'inset(12% 6% 18% 6% round 12px)', ease: 'none' },
+            0
+          )
+          .to(`.${styles.copy}`, { yPercent: -30, ease: 'none' }, 0);
+      });
+    },
+    { scope: ref }
+  );
+
   return (
-    <section id="topo" className={styles.hero}>
-      <div className={styles.intro}>
-        <ScrollReveal
-          tag="p"
-          containerClassName={styles.statement}
-          mode="enter"
-          effect="rise"
-          splitBy="lines"
-          stagger={0.1}
-          duration={1}
-          delay={0.5}
-          baseOpacity={0}
-          baseRotation={0}
-          enableBlur={false}
-        >
-          Desenvolvedora front-end em São Paulo. Construo interfaces claras, responsivas e cuidadas até o último detalhe.
-        </ScrollReveal>
-      </div>
-
-      <AnimatedContent
-        trigger="mount"
-        className={`${styles.meta} label`}
-        distance={16}
-        duration={1}
-        delay={0.8}
-        stagger={0.08}
-      >
-        <span>Front-end</span>
-        <span>São Paulo, Brasil</span>
-        <span className={styles.metaHide}>Aberta a novos projetos</span>
-        <a href="#sobre" className={`${styles.scroll} link-line`}>Role para ver mais</a>
-      </AnimatedContent>
-
-      <div className={styles.nameWrap}>
-        <SplitText
-          tag="h1"
-          text="Carol Sousa"
-          className={styles.name}
-          splitType="chars"
-          mask
-          trigger="load"
-          from={{ yPercent: 110 }}
-          to={{ yPercent: 0 }}
-          ease="expo.out"
-          duration={1.5}
-          delay={45}
-          textAlign="left"
+    <section id="topo" ref={ref} className={styles.hero}>
+      <div ref={frameRef} className={styles.frame}>
+        <DotGrid
+          className={styles.dots}
+          dotSize={4}
+          gap={22}
+          baseColor="#3a3935"
+          activeColor="#efece6"
+          proximity={150}
+          shockRadius={260}
+          shockStrength={4}
+          glow={0.2}
         />
+
+        <span className={styles.scroll}>role</span>
+
+        <div className={styles.copy}>
+          <SplitText
+            tag="h1"
+            text="Desenvolvedora front-end em São Paulo."
+            className={`${styles.line} display`}
+            splitType="chars"
+            mask
+            trigger="load"
+            from={{ yPercent: 110 }}
+            to={{ yPercent: 0, delay: 1 }}
+            ease="expo.out"
+            duration={1.2}
+            delay={18}
+            accentColor="#8c877e"
+            textAlign="left"
+          />
+          <SplitText
+            tag="h2"
+            text="Interfaces claras e bem construídas."
+            className={`${styles.line} ${styles.muted} display`}
+            splitType="chars"
+            mask
+            trigger="load"
+            from={{ yPercent: 110 }}
+            to={{ yPercent: 0, delay: 1.35 }}
+            ease="expo.out"
+            duration={1.2}
+            delay={18}
+            accentColor="#efece6"
+            textAlign="left"
+          />
+        </div>
       </div>
     </section>
   );

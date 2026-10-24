@@ -1,92 +1,54 @@
 .contact {
-  display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  column-gap: var(--gutter);
-  padding: 0 var(--page) clamp(96px, 16vh, 160px);
+  position: relative;
+  z-index: 2;
+  padding: clamp(60px, 10vh, 120px) var(--page) clamp(120px, 20vh, 220px);
+  background-color: var(--paper);
 }
 
-.heading {
-  grid-column: 1 / 4;
-  display: flex;
-  gap: 12px;
-  padding-top: 0.6em;
-}
-
-.muted {
-  color: var(--ink-soft);
-}
-
-.title {
-  grid-column: 4 / 13;
-  font-size: clamp(52px, 9.6vw, 164px);
-  font-weight: 380;
-  line-height: 0.95;
-  letter-spacing: -0.045em;
+.statement {
+  /* "CONSTRUIR" mede 5.45em e precisa caber na largura útil */
+  font-size: min(12vw, 200px, calc((100vw - 2 * var(--page)) / 5.7));
+  max-width: 7.2em;
 }
 
 .details {
-  grid-column: 4 / 13;
   display: grid;
-  grid-template-columns: repeat(9, minmax(0, 1fr));
+  grid-template-columns: repeat(12, minmax(0, 1fr));
   column-gap: var(--gutter);
-  margin-top: clamp(56px, 8vw, 120px);
-  padding-top: 20px;
-  border-top: 1px solid var(--line);
+  margin-top: clamp(64px, 10vw, 140px);
 }
 
-.lead {
-  grid-column: 1 / 4;
+.heading {
+  grid-column: 1 / 5;
+}
+
+.body {
+  grid-column: 5 / 11;
+  font-size: clamp(17px, 1.3vw, 20px);
   color: var(--ink-soft);
-  max-width: 30ch;
+  max-width: 36em;
 }
 
-.mailWrap {
-  grid-column: 4 / 10;
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 28px;
+  margin-top: 32px;
 }
 
 .mail {
-  font-size: clamp(24px, 2.6vw, 42px);
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-  overflow-wrap: anywhere;
-}
-
-.channels {
-  grid-column: 4 / 10;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px 32px;
-  margin-top: 40px;
-}
-
-.channel {
-  display: inline-flex;
-  gap: 6px;
+  color: var(--ink);
+  font-size: 16px;
 }
 
 @media (max-width: 900px) {
   .heading,
-  .title,
-  .details {
+  .body {
     grid-column: 1 / 13;
   }
 
-  .title {
-    margin-top: 28px;
-  }
-
-  .details {
-    grid-template-columns: 1fr;
-    row-gap: 28px;
-  }
-
-  .lead,
-  .mailWrap,
-  .channels {
-    grid-column: 1 / -1;
-  }
-
-  .channels {
-    margin-top: 0;
+  .heading {
+    margin-bottom: 20px;
   }
 }
