@@ -18,7 +18,7 @@ const About = () => {
         stagger={0.05}
         wordAnimationEnd="bottom 60%"
       >
-        Sou estudante de Análise e Desenvolvimento de Sistemas e desenvolvedora front-end. Transformo layouts em interfaces rápidas, acessíveis e responsivas, com código limpo e atenção a cada detalhe.
+        Sou desenvolvedora full-stack, formada em Análise e Desenvolvimento de Sistemas. Crio aplicações de ponta a ponta com React, TypeScript e Node.js, da interface responsiva à API e ao banco de dados, com código limpo e testado.
       </ScrollReveal>
     </section>
   );
