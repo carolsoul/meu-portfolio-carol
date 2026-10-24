@@ -1,0 +1,51 @@
+.header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 50;
+  height: var(--header-h);
+  padding: 0 var(--page);
+  background-color: var(--paper);
+}
+
+.bar {
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+  align-items: center;
+}
+
+.brand {
+  grid-column: 1 / 4;
+  justify-self: start;
+}
+
+.clock {
+  grid-column: 4 / 7;
+}
+
+.clock time {
+  font-variant-numeric: tabular-nums;
+}
+
+.nav {
+  grid-column: 7 / 13;
+  display: flex;
+  justify-content: flex-end;
+  gap: clamp(16px, 2.4vw, 40px);
+}
+
+@media (max-width: 720px) {
+  .clock {
+    display: none;
+  }
+
+  .brand {
+    grid-column: 1 / 6;
+  }
+
+  .nav {
+    grid-column: 6 / 13;
+    gap: 18px;
+  }
+}

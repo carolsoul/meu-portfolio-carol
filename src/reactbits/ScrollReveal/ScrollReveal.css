@@ -1,0 +1,13 @@
+/*
+  Baseado em React Bits (https://reactbits.dev) - MIT + Commons Clause.
+  Copyright (c) 2026 David Haz.
+*/
+
+.scroll-reveal-text {
+  display: block;
+}
+
+.scroll-reveal-word,
+.scroll-reveal-piece {
+  display: inline-block;
+}

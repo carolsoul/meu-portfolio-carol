@@ -1,12 +1,34 @@
-# React + Vite
+# Carol Sousa | Portfólio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Portfólio de página única (SPA) com Hero, Sobre, Projetos em destaque e Contato.
 
-Currently, two official plugins are available:
+## Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React 19 + Vite
+- GSAP (ScrollTrigger e SplitText) com `@gsap/react`
+- Newsreader, servida localmente via `@fontsource-variable/newsreader`
 
-## Expanding the ESLint configuration
+## Rodando localmente
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+npm install
+npm run dev
+```
+
+Outros scripts: `npm run build`, `npm run preview` e `npm run lint`.
+
+## Estrutura
+
+```
+src/
+  components/   Header, Hero, About, Projects, Contact, Footer
+  reactbits/    componentes de animação adaptados do React Bits
+```
+
+Os projetos em destaque ficam em `src/components/Projects/projects.js`.
+
+## Créditos
+
+As animações de texto e de entrada usam como base os componentes `SplitText`,
+`ScrollReveal` e `AnimatedContent` do [React Bits](https://reactbits.dev),
+de David Haz, sob a licença MIT + Commons Clause.
