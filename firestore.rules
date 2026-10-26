@@ -1,0 +1,19 @@
+rules_version = '2';
+
+// Cole este conteúdo em Firestore Database > Regras e troque SEU_UID pelo UID
+// que aparece na página /admin depois do login.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /projects/{slug} {
+      // qualquer visitante lê os projetos
+      allow read: if true;
+      // só você cria, edita e apaga
+      allow write: if request.auth != null && request.auth.uid == 'SEU_UID';
+    }
+
+    // todo o resto fica fechado
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

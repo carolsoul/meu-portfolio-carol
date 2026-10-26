@@ -1,5 +1,6 @@
 import ScrollReveal from '../../reactbits/ScrollReveal/ScrollReveal';
 import AnimatedContent from '../../reactbits/AnimatedContent/AnimatedContent';
+import CopyEmail from '../CopyEmail/CopyEmail';
 import { email } from './channels';
 import styles from './Contact.module.css';
 
@@ -31,6 +32,7 @@ const Contact = () => {
             <a href={`mailto:${email}`} className="pill">
               Me mande um e-mail
             </a>
+            <CopyEmail email={email} />
           </div>
         </AnimatedContent>
       </div>

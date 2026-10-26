@@ -112,6 +112,18 @@ section[id] {
   background-color: #2a2927;
 }
 
+/* variação vazada, para a ação secundária ao lado de uma pílula cheia */
+.pill-ghost {
+  background-color: transparent;
+  color: var(--ink);
+  box-shadow: inset 0 0 0 1px var(--ink);
+}
+
+.pill-ghost:hover {
+  background-color: var(--ink);
+  color: var(--paper);
+}
+
 /* as máscaras do SplitText (GSAP) crescem no topo e nas laterais para não cortar
    terminais que invadem a letra vizinha; a base continua escondendo o texto na entrada */
 .split-char-mask,

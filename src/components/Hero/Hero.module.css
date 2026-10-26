@@ -22,7 +22,7 @@
 .scroll {
   position: absolute;
   left: 50%;
-  top: 56%;
+  top: 34%;
   transform: translateX(-50%);
   font-size: 12px;
   letter-spacing: 0.14em;
@@ -42,23 +42,71 @@
   pointer-events: none;
 }
 
-/* "DESENVOLVEDORA FULL-STACK." mede 15.27em e ocupa a largura útil (com folga de renderização) */
+/* "DESENVOLVEDORA FULL-STACK JÚNIOR." fica em duas linhas; a mais larga,
+   "FULL-STACK JÚNIOR.", mede 9.7em e ocupa a largura útil */
 .title {
   display: block !important;
-  font-size: calc((100vw - 2 * var(--page)) / 16.2);
+  font-size: calc((100vw - 2 * var(--page)) / 10.1);
+  /* espaço para o acento do Ú não encostar na linha de cima */
+  line-height: 1 !important;
 }
 
-/* em telas estreitas quebra em duas linhas; "DESENVOLVEDORA" mede 9.12em */
-@media (max-width: 900px) {
-  .title {
-    font-size: calc((100vw - 2 * var(--page)) / 9.35);
+/* selo de disponibilidade */
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  justify-self: start;
+  padding: 8px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background-color: var(--paper);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.statusDot {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--ink);
+}
+
+.statusDot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-color: var(--ink);
+  animation: pulse 2.2s var(--ease-out) infinite;
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  to {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .statusDot::after {
+    animation: none;
   }
 }
 
 .line {
   display: block !important;
   font-size: inherit;
-  max-width: 22em;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  max-width: 26em;
 }
 
 .muted {
