@@ -59,9 +59,13 @@ const Hero = () => {
         <span className={styles.scroll}>role</span>
 
         <div className={styles.copy}>
+          <p className={styles.status}>
+            <span className={styles.statusDot} aria-hidden="true" />
+            Disponível para trabalhar
+          </p>
           <SplitText
             tag="h1"
-            text="Desenvolvedora full-stack."
+            text="Desenvolvedora full-stack júnior."
             className={`${styles.title} display`}
             splitType="chars"
             mask
@@ -76,8 +80,8 @@ const Hero = () => {
           />
           <SplitText
             tag="h2"
-            text="Com foco em produtos web completos, da interface à API."
-            className={`${styles.line} ${styles.muted} display`}
+            text="Construo e-commerces, jogos educativos e APIs com React, TypeScript e Node.js."
+            className={`${styles.line} ${styles.muted}`}
             splitType="chars"
             mask
             trigger="load"

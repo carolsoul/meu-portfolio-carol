@@ -1,0 +1,6 @@
+/* reset de <button> para ficar igual às pílulas de link */
+.button {
+  border: 0;
+  font-family: inherit;
+  cursor: pointer;
+}

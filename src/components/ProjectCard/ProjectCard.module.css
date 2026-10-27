@@ -1,0 +1,55 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.screen {
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: 10px;
+  background-color: var(--ink);
+}
+
+.screen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition:
+    transform 1.2s var(--ease-out),
+    filter 0.8s var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .screen img {
+    filter: grayscale(1) contrast(1.04);
+  }
+
+  .card:hover .screen img {
+    filter: none;
+    transform: scale(1.03);
+  }
+}
+
+.category {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.title {
+  margin-top: 6px;
+  font-size: clamp(24px, 2.2vw, 34px);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.summary {
+  margin-top: 8px;
+  color: var(--ink-soft);
+  max-width: 44ch;
+}

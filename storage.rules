@@ -1,0 +1,15 @@
+rules_version = '2';
+
+// Opcional: só para enviar imagens pela página /admin (o Storage exige o plano Blaze).
+// Cole em Storage > Regras e troque SEU_UID pelo seu UID.
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /projects/{file} {
+      allow read: if true;
+      allow write: if request.auth != null
+        && request.auth.uid == 'SEU_UID'
+        && request.resource.size < 5 * 1024 * 1024
+        && request.resource.contentType.matches('image/.*');
+    }
+  }
+}

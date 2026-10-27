@@ -1,10 +1,14 @@
+import { Link } from 'react-router-dom';
 import SplitText from '../../reactbits/SplitText/SplitText';
 import ScrollStack, { ScrollStackItem } from '../../reactbits/ScrollStack/ScrollStack';
 import AnimatedContent from '../../reactbits/AnimatedContent/AnimatedContent';
-import { allProjectsUrl, featuredProjects } from './projects';
+import { featuredOf } from '../../data/projects';
+import { useProjects } from '../../lib/projects';
 import styles from './Projects.module.css';
 
 const Projects = () => {
+  const featured = featuredOf(useProjects().projects);
+
   return (
     <section id="projetos" className={styles.projects}>
       <SplitText
@@ -33,9 +37,9 @@ const Projects = () => {
         dimAmount={0.35}
         holdDistance={160}
       >
-        {featuredProjects.map(project => (
-          <ScrollStackItem key={project.id} itemClassName={styles.card}>
-            <a href={project.url} target="_blank" rel="noopener noreferrer" className={styles.link}>
+        {featured.map(project => (
+          <ScrollStackItem key={project.slug} itemClassName={styles.card}>
+            <Link to={`/projetos/${project.slug}`} className={styles.link}>
               <figure className={styles.screen}>
                 <img src={project.image} alt={`Tela do projeto ${project.title}`} loading="lazy" />
               </figure>
@@ -44,17 +48,18 @@ const Projects = () => {
 
               <div className={styles.caption}>
                 <h3 className={styles.cardTitle}>{project.title}</h3>
-                <p className={styles.description}>{project.description}</p>
+                <p className={styles.description}>{project.summary}</p>
+                <span className={styles.more}>Sobre o projeto →</span>
               </div>
-            </a>
+            </Link>
           </ScrollStackItem>
         ))}
       </ScrollStack>
 
       <AnimatedContent className={styles.all} distance={30} duration={1}>
-        <a href={allProjectsUrl} target="_blank" rel="noopener noreferrer" className="pill">
-          Ver todos
-        </a>
+        <Link to="/projetos" className="pill">
+          Ver todos os projetos
+        </Link>
       </AnimatedContent>
     </section>
   );

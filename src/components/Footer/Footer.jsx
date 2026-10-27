@@ -1,11 +1,12 @@
+import { Link } from 'react-router-dom';
 import { channels } from '../Contact/channels';
 import styles from './Footer.module.css';
 
 const sections = [
-  { href: '#topo', label: 'Início' },
-  { href: '#sobre', label: 'Sobre' },
-  { href: '#projetos', label: 'Projetos' },
-  { href: '#contato', label: 'Contato' },
+  { to: '/#topo', label: 'Início' },
+  { to: '/#sobre', label: 'Sobre' },
+  { to: '/projetos', label: 'Projetos' },
+  { to: '/#contato', label: 'Contato' },
 ];
 
 // fica preso no fundo da página e é revelado quando o conteúdo sobe
@@ -16,9 +17,9 @@ const Footer = () => {
         <nav aria-label="Rodapé" className={styles.column}>
           <p className={styles.title}>Navegação</p>
           {sections.map(item => (
-            <a key={item.href} href={item.href} className="link-line">
+            <Link key={item.to} to={item.to} className="link-line">
               {item.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
