@@ -35,7 +35,7 @@ const technologies = [
   'Figma',
 ];
 
-// trechos do parágrafo que ganham marcação de caneta quando aparecem
+// trechos do parágrafo que ganham marcação de caneta; o ScrollReveal avança a marcação junto com a revelação
 const marks = [
   { text: 'TypeScript', className: 'mark-underline' },
   { text: 'testes automatizados', className: 'mark-highlight' },
@@ -49,20 +49,6 @@ const About = () => {
       const mm = gsap.matchMedia();
 
       mm.add('(prefers-reduced-motion: no-preference)', () => {
-        // a marcação entra quando o trecho chega na altura em que as palavras já estão reveladas
-        gsap.utils.toArray('.scroll-reveal-mark').forEach(mark => {
-          gsap.fromTo(
-            mark,
-            { '--mark-progress': 0 },
-            {
-              '--mark-progress': 1,
-              duration: 0.9,
-              ease: 'power2.inOut',
-              scrollTrigger: { trigger: mark, start: 'top 58%', once: true },
-            }
-          );
-        });
-
         // o card de destaque balança uma vez, como uma placa pendurada
         gsap
           .timeline({ scrollTrigger: { trigger: `.${styles.highlight}`, start: 'top 80%', once: true } })

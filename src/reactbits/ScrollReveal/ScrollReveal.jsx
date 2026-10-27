@@ -193,6 +193,13 @@ const ScrollReveal = ({
 
       const total = () => span + Math.max(0, count - 1) * gap;
 
+      // cada marcação avança junto com as palavras que ela cobre: começa quando a primeira
+      // palavra começa a aparecer e termina quando a última fica totalmente visível
+      const markers = Array.from(el.querySelectorAll('.scroll-reveal-mark')).map(mark => {
+        const indexes = Array.from(mark.querySelectorAll('.scroll-reveal-piece')).map(piece => pieces.indexOf(piece));
+        return { mark, first: Math.min(...indexes), last: Math.max(...indexes) };
+      });
+
       const render = () => {
         const at = state.p * total();
         pieces.forEach((piece, index) => {
@@ -200,6 +207,11 @@ const ScrollReveal = ({
           if (t === last[index]) return;
           last[index] = t;
           paintPiece(piece, t, look);
+        });
+        markers.forEach(({ mark, first, last: end }) => {
+          const from = order[first] * gap;
+          const length = (order[end] - order[first]) * gap + span;
+          mark.style.setProperty('--mark-progress', clamp01((at - from) / length).toFixed(3));
         });
       };
 
@@ -300,6 +312,7 @@ const ScrollReveal = ({
         wrappers.forEach(wrapper => {
           wrapper.style.clipPath = '';
         });
+        markers.forEach(({ mark }) => mark.style.removeProperty('--mark-progress'));
       };
     });
 

@@ -1,12 +1,39 @@
+import { useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
 import ScrollReveal from '../../reactbits/ScrollReveal/ScrollReveal';
 import AnimatedContent from '../../reactbits/AnimatedContent/AnimatedContent';
 import CopyEmail from '../CopyEmail/CopyEmail';
 import { email } from './channels';
 import styles from './Contact.module.css';
 
+gsap.registerPlugin(ScrollTrigger, useGSAP);
+
 const Contact = () => {
+  const ref = useRef(null);
+
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia();
+      mm.add('(prefers-reduced-motion: no-preference)', () => {
+        // a caneta contorna "Contato" conforme a rolagem
+        gsap.fromTo(
+          `.${styles.circle} path`,
+          { strokeDashoffset: 1 },
+          {
+            strokeDashoffset: 0,
+            ease: 'none',
+            scrollTrigger: { trigger: `.${styles.heading}`, start: 'top 85%', end: 'top 45%', scrub: 0.6 },
+          }
+        );
+      });
+    },
+    { scope: ref }
+  );
+
   return (
-    <section id="contato" className={styles.contact}>
+    <section id="contato" ref={ref} className={styles.contact}>
       <ScrollReveal
         tag="h2"
         containerClassName={`${styles.statement} display`}
@@ -21,7 +48,15 @@ const Contact = () => {
 
       <div className={styles.details}>
         <AnimatedContent className={styles.heading} distance={40} duration={1.1}>
-          <h3 className="heading-light">Contato</h3>
+          <h3 className={`heading-light ${styles.circled}`}>
+            Contato
+            <svg className={styles.circle} viewBox="0 0 220 90" preserveAspectRatio="none" aria-hidden="true">
+              <path
+                d="M168 14 C118 2 40 6 16 34 C-2 56 52 82 120 79 C178 76 214 58 206 35 C199 15 152 6 96 10"
+                pathLength="1"
+              />
+            </svg>
+          </h3>
         </AnimatedContent>
 
         <AnimatedContent className={styles.body} distance={30} duration={1} stagger={0.1}>

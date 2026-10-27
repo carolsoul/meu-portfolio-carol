@@ -135,7 +135,7 @@ section[id] {
 }
 
 /* marcações de caneta dentro do texto revelado pelo ScrollReveal;
-   --mark-progress vai de 0 a 1 (animado pelo GSAP; fica em 1 sem animação) */
+   --mark-progress vai de 0 a 1 conforme a rolagem (fica em 1 com movimento reduzido) */
 .scroll-reveal-mark {
   --mark-progress: 1;
 }
