@@ -14,7 +14,7 @@ const AllProjects = () => {
   return (
     <div className={page.page}>
       <Link to="/#projetos" className={`${page.back} link-line`}>
-        ← Voltar
+        ← Voltar ao início
       </Link>
 
       <SplitText

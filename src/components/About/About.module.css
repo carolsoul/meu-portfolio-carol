@@ -48,23 +48,73 @@
   color: var(--ink-soft);
 }
 
-.spaced {
-  margin-top: 32px;
-}
-
-.list {
-  display: grid;
-  gap: 22px;
-}
-
-.jobHead strong,
-.block strong {
+.jobHead strong {
   font-weight: 600;
 }
 
-.jobDetail {
-  margin-top: 6px;
+.points {
+  display: grid;
+  gap: 10px;
+  margin-top: 14px;
   color: var(--ink-soft);
+}
+
+.points li {
+  padding-left: 16px;
+  position: relative;
+}
+
+.points li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.7em;
+  width: 6px;
+  height: 1px;
+  background-color: currentColor;
+}
+
+/* card do destaque, pendurado pelo topo para balançar */
+.highlight {
+  display: grid;
+  gap: 10px;
+  padding: 26px 26px 24px;
+  border-radius: 14px;
+  background-color: var(--accent);
+  color: var(--ink);
+  transform-origin: 50% 0;
+  transition: transform 0.5s var(--ease-out);
+}
+
+.highlight:hover {
+  transform: rotate(-1.5deg);
+}
+
+.highlightKicker {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.highlightTitle {
+  font-size: clamp(30px, 3vw, 44px);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+}
+
+.highlightText {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.highlightMore {
+  margin-top: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
 }
 
 .muted {

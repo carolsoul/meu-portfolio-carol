@@ -66,6 +66,7 @@ const ScrollReveal = ({
   children,
   tag = 'h2',
   delay = 0,
+  marks = [],
   scrollContainerRef,
   enableBlur = true,
   baseOpacity = 0.1,
@@ -92,9 +93,12 @@ const ScrollReveal = ({
     return parts.every(part => typeof part === 'string' || typeof part === 'number') ? parts.join('') : null;
   }, [children]);
 
+  const marksKey = JSON.stringify(marks);
+
   const splitText = useMemo(() => {
     if (text === null) return null;
-    return text.split(/(\s+)/).map((word, index) =>
+    const tokens = text.split(/(\s+)/);
+    const renderToken = (word, index) =>
       word.trim() === '' ? (
         word
       ) : (
@@ -109,9 +113,35 @@ const ScrollReveal = ({
             <span className="scroll-reveal-piece">{word}</span>
           )}
         </span>
-      )
-    );
-  }, [text, splitBy]);
+      );
+
+    // trechos marcados (ex.: { text: 'TypeScript', className: 'sublinhado' }) ganham um span em volta
+    // das palavras, para quem usa o componente animar a marcação; o trecho precisa bater palavra por palavra
+    const found = JSON.parse(marksKey)
+      .map(mark => {
+        const parts = mark.text.split(/(\s+)/);
+        const start = tokens.findIndex((_, i) => parts.every((part, j) => tokens[i + j] === part));
+        return start < 0 ? null : { ...mark, start, end: start + parts.length };
+      })
+      .filter(Boolean);
+
+    const output = [];
+    for (let i = 0; i < tokens.length; ) {
+      const mark = found.find(item => item.start === i);
+      if (mark) {
+        output.push(
+          <span className={`scroll-reveal-mark ${mark.className ?? ''}`} key={`mark-${i}`}>
+            {tokens.slice(mark.start, mark.end).map((word, j) => renderToken(word, mark.start + j))}
+          </span>
+        );
+        i = mark.end;
+      } else {
+        output.push(renderToken(tokens[i], i));
+        i += 1;
+      }
+    }
+    return output;
+  }, [text, splitBy, marksKey]);
 
   const [mounted, setMounted] = useState(false);
 

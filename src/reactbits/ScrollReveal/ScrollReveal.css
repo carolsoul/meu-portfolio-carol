@@ -11,3 +11,8 @@
 .scroll-reveal-piece {
   display: inline-block;
 }
+
+.scroll-reveal-mark {
+  position: relative;
+  display: inline;
+}

@@ -67,8 +67,12 @@ code {
   border-radius: 10px;
 }
 
+.sync {
+  margin-top: 20px;
+}
+
 .list {
-  margin-top: 32px;
+  margin-top: 20px;
   border-top: 1px solid var(--line);
 }
 

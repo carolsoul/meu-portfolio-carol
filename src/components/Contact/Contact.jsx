@@ -26,11 +26,11 @@ const Contact = () => {
 
         <AnimatedContent className={styles.body} distance={30} duration={1} stagger={0.1}>
           <p>
-            Tem uma ideia, uma vaga ou um projeto em andamento? Me mande uma mensagem e eu respondo assim que puder.
+            Estou disponível para oportunidades como desenvolvedora full-stack júnior. Envie uma mensagem e retorno em breve.
           </p>
           <div className={styles.actions}>
             <a href={`mailto:${email}`} className="pill">
-              Me mande um e-mail
+              Enviar e-mail
             </a>
             <CopyEmail email={email} />
           </div>

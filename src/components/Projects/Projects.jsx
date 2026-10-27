@@ -34,7 +34,7 @@ const Projects = () => {
         stackPosition="14%"
         itemScale={0.04}
         baseScale={0.88}
-        dimAmount={0.35}
+        dimAmount={0.18}
         holdDistance={160}
       >
         {featured.map(project => (
