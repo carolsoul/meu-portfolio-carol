@@ -205,6 +205,22 @@ const Dashboard = ({ user }) => {
     }
   };
 
+  // sobrescreve no Firestore os projetos que vêm no código (os criados só no admin ficam intactos)
+  const syncLocal = async () => {
+    const ok = window.confirm(
+      `Substituir os ${localProjects.length} projetos que vêm no código pela versão atual deles? ` +
+        'Edições feitas no admin nesses projetos serão perdidas. Projetos criados só no admin não mudam.'
+    );
+    if (!ok) return;
+    try {
+      await Promise.all(localProjects.map(project => saveProject(project)));
+      flash('Projetos atualizados com a versão do código.');
+      load();
+    } catch (err) {
+      setError(errorMessage(err));
+    }
+  };
+
   const remove = async project => {
     if (!window.confirm(`Apagar "${project.title}"? Isso não pode ser desfeito.`)) return;
     try {
@@ -252,6 +268,12 @@ const Dashboard = ({ user }) => {
             Importar os {localProjects.length} projetos atuais
           </button>
         </div>
+      )}
+
+      {projects?.length > 0 && (
+        <button type="button" className={`${styles.textButton} ${styles.sync}`} onClick={syncLocal}>
+          Atualizar com a versão do código
+        </button>
       )}
 
       {projects?.length > 0 && (

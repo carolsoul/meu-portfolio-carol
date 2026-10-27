@@ -17,7 +17,7 @@ const Hero = () => {
       const mm = gsap.matchMedia();
 
       mm.add('(prefers-reduced-motion: no-preference)', () => {
-        // o hero fica preso enquanto a seção seguinte sobe por cima, e encolhe até virar um cartão
+        // o hero fica preso enquanto a seção seguinte sobe por cima; o conteúdo recua e esmaece
         gsap
           .timeline({
             scrollTrigger: {
@@ -29,12 +29,7 @@ const Hero = () => {
               pinSpacing: false,
             },
           })
-          .fromTo(
-            frameRef.current,
-            { clipPath: 'inset(0% 0% 0% 0% round 0px)' },
-            { clipPath: 'inset(12% 6% 18% 6% round 12px)', ease: 'none' },
-            0
-          )
+          .to(frameRef.current, { scale: 0.94, opacity: 0.35, ease: 'none' }, 0)
           .to(`.${styles.copy}`, { yPercent: -30, ease: 'none' }, 0);
       });
     },
@@ -80,7 +75,7 @@ const Hero = () => {
           />
           <SplitText
             tag="h2"
-            text="Construo e-commerces, jogos educativos e APIs com React, TypeScript e Node.js."
+            text="Desenvolvo aplicações web completas, do front-end ao back-end, com React, TypeScript e Node.js."
             className={`${styles.line} ${styles.muted}`}
             splitType="chars"
             mask

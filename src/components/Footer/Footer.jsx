@@ -33,7 +33,7 @@ const Footer = () => {
         </div>
 
         <div className={styles.column}>
-          <p className={styles.title}>Base</p>
+          <p className={styles.title}>Localização</p>
           <p>São Paulo, Brasil</p>
         </div>
       </div>

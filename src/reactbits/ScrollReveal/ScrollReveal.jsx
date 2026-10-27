@@ -66,6 +66,7 @@ const ScrollReveal = ({
   children,
   tag = 'h2',
   delay = 0,
+  marks = [],
   scrollContainerRef,
   enableBlur = true,
   baseOpacity = 0.1,
@@ -92,9 +93,12 @@ const ScrollReveal = ({
     return parts.every(part => typeof part === 'string' || typeof part === 'number') ? parts.join('') : null;
   }, [children]);
 
+  const marksKey = JSON.stringify(marks);
+
   const splitText = useMemo(() => {
     if (text === null) return null;
-    return text.split(/(\s+)/).map((word, index) =>
+    const tokens = text.split(/(\s+)/);
+    const renderToken = (word, index) =>
       word.trim() === '' ? (
         word
       ) : (
@@ -109,9 +113,35 @@ const ScrollReveal = ({
             <span className="scroll-reveal-piece">{word}</span>
           )}
         </span>
-      )
-    );
-  }, [text, splitBy]);
+      );
+
+    // trechos marcados (ex.: { text: 'TypeScript', className: 'sublinhado' }) ganham um span em volta
+    // das palavras, para quem usa o componente animar a marcação; o trecho precisa bater palavra por palavra
+    const found = JSON.parse(marksKey)
+      .map(mark => {
+        const parts = mark.text.split(/(\s+)/);
+        const start = tokens.findIndex((_, i) => parts.every((part, j) => tokens[i + j] === part));
+        return start < 0 ? null : { ...mark, start, end: start + parts.length };
+      })
+      .filter(Boolean);
+
+    const output = [];
+    for (let i = 0; i < tokens.length; ) {
+      const mark = found.find(item => item.start === i);
+      if (mark) {
+        output.push(
+          <span className={`scroll-reveal-mark ${mark.className ?? ''}`} key={`mark-${i}`}>
+            {tokens.slice(mark.start, mark.end).map((word, j) => renderToken(word, mark.start + j))}
+          </span>
+        );
+        i = mark.end;
+      } else {
+        output.push(renderToken(tokens[i], i));
+        i += 1;
+      }
+    }
+    return output;
+  }, [text, splitBy, marksKey]);
 
   const [mounted, setMounted] = useState(false);
 
@@ -163,6 +193,13 @@ const ScrollReveal = ({
 
       const total = () => span + Math.max(0, count - 1) * gap;
 
+      // cada marcação avança junto com as palavras que ela cobre: começa quando a primeira
+      // palavra começa a aparecer e termina quando a última fica totalmente visível
+      const markers = Array.from(el.querySelectorAll('.scroll-reveal-mark')).map(mark => {
+        const indexes = Array.from(mark.querySelectorAll('.scroll-reveal-piece')).map(piece => pieces.indexOf(piece));
+        return { mark, first: Math.min(...indexes), last: Math.max(...indexes) };
+      });
+
       const render = () => {
         const at = state.p * total();
         pieces.forEach((piece, index) => {
@@ -170,6 +207,11 @@ const ScrollReveal = ({
           if (t === last[index]) return;
           last[index] = t;
           paintPiece(piece, t, look);
+        });
+        markers.forEach(({ mark, first, last: end }) => {
+          const from = order[first] * gap;
+          const length = (order[end] - order[first]) * gap + span;
+          mark.style.setProperty('--mark-progress', clamp01((at - from) / length).toFixed(3));
         });
       };
 
@@ -270,6 +312,7 @@ const ScrollReveal = ({
         wrappers.forEach(wrapper => {
           wrapper.style.clipPath = '';
         });
+        markers.forEach(({ mark }) => mark.style.removeProperty('--mark-progress'));
       };
     });
 

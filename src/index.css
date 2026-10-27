@@ -4,6 +4,8 @@
   --ink-soft: #6a665f;
   --line: rgba(17, 17, 16, 0.14);
   --dark-line: rgba(239, 236, 230, 0.16);
+  /* único destaque de cor do site, usado com parcimônia */
+  --accent: #c2ff3d;
 
   --sans: 'Outfit Variable', 'Helvetica Neue', Arial, sans-serif;
 
@@ -130,6 +132,35 @@ section[id] {
 .split-word-mask {
   padding: 0.2em 0.2em 0;
   margin: -0.2em -0.2em 0;
+}
+
+/* marcações de caneta dentro do texto revelado pelo ScrollReveal;
+   --mark-progress vai de 0 a 1 conforme a rolagem (fica em 1 com movimento reduzido) */
+.scroll-reveal-mark {
+  --mark-progress: 1;
+}
+
+.mark-underline::after {
+  content: '';
+  position: absolute;
+  left: -0.06em;
+  right: -0.06em;
+  bottom: 0.04em;
+  height: 0.34em;
+  border-radius: 0.12em;
+  background-color: var(--accent);
+  transform: rotate(-1.2deg) scaleX(var(--mark-progress));
+  transform-origin: left center;
+  z-index: -1;
+}
+
+.mark-highlight {
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-repeat: no-repeat;
+  background-position: 0 70%;
+  background-size: calc(var(--mark-progress) * 100%) 72%;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
 }
 
 /* sublinhado que entra da esquerda no hover */

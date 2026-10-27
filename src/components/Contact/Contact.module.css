@@ -47,3 +47,29 @@
     margin-bottom: 20px;
   }
 }
+
+/* "Contato" contornado por um traço de caneta */
+.circled {
+  position: relative;
+  display: inline-block;
+}
+
+.circle {
+  position: absolute;
+  left: -22%;
+  top: -38%;
+  width: 144%;
+  height: 176%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.circle path {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 0;
+  vector-effect: non-scaling-stroke;
+}
